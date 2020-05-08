@@ -4,16 +4,25 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ToDoApp.view;
+using FontAwesome.Sharp;
 
 namespace ToDoApp
 {
     public partial class MainForm : Form
     {
-        
+        //Fields
+        private IconButton CurrentBtn;
+        private Panel leftBorderBtn;
+        private Form currentChildForm;
+
+
+
+
         public void RefreshPanel()
         {
             mainPanel.Controls.Clear();
@@ -25,7 +34,7 @@ namespace ToDoApp
             //List<Category> categories
             List<Task> tasks = TaskHandler.GetUnfinishedTasks();
             List<Category> categories = CategoryHandler.GetCategories();
-            
+
             int i = 0;
             Panel[] taskPanel = new Panel[tasks.Count];
             Button[] failButton = new Button[tasks.Count];
@@ -42,12 +51,12 @@ namespace ToDoApp
                 taskPanel[i] = new Panel
                 {
                     BackColor = System.Drawing.Color.LightSkyBlue,
-                    Location = new Point(13, 13+ 144 * i),
+                    Location = new Point(13, 13 + 144 * i),
                     Name = "tasktaskPanel" + (int)task.GetId(),
                     Size = new System.Drawing.Size(727, 142),
                     TabIndex = 9 + (int)task.GetId() * 9 + 5
-                    
-            };
+
+                };
                 taskPanel[i].SuspendLayout();
 
                 failButton[i] = new Button
@@ -61,7 +70,7 @@ namespace ToDoApp
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold),
                     ForeColor = System.Drawing.Color.White,
                     //BackgroundImage = ((System.Drawing.Image)(TaskView.resources.GetObject("failButton.BackgroundImage")));
-            };
+                };
                 failButton[i].Click += (object sender, EventArgs e) =>
                 {
                     TaskHandler.SetTaskFailed((int)task.GetId());
@@ -78,7 +87,7 @@ namespace ToDoApp
                     UseVisualStyleBackColor = true,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold),
                     ForeColor = System.Drawing.Color.White
-            };
+                };
                 finishButton[i].Click += (object sender, EventArgs e) =>
                 {
                     TaskHandler.SetTaskFinished((int)task.GetId());
@@ -95,7 +104,7 @@ namespace ToDoApp
                     UseVisualStyleBackColor = true,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold)
                 };
-                
+
                 statusLabel[i] = new Label
                 {
                     Location = new System.Drawing.Point(322, 32),
@@ -122,7 +131,7 @@ namespace ToDoApp
                     TabIndex = 4 + (int)task.GetId() * 9 + 5,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold)
                 };
-                if (task.GetIsImportant()!=null && (bool)task.GetIsImportant())
+                if (task.GetIsImportant() != null && (bool)task.GetIsImportant())
                 {
                     isImportantLabel[i].Text = "ważne";
                 }
@@ -149,13 +158,13 @@ namespace ToDoApp
                     Text = task.GetDescription(),
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F)
                 };
-                
+
                 nameLabel[i] = new Label
                 {
                     Location = new System.Drawing.Point(4, 3),
                     //Multiline = true,
                     Name = "nameLabel" + (int)task.GetId(),
-                   // ReadOnly = true,
+                    // ReadOnly = true,
                     Size = new System.Drawing.Size(312, 51),
                     TabIndex = 0 + (int)task.GetId() * 9 + 5,
                     Text = task.GetName(),
@@ -169,11 +178,11 @@ namespace ToDoApp
                     Size = new System.Drawing.Size(100, 22),
                     TabIndex = 2 + (int)task.GetId() * 9 + 5
                 };
-                if(categories.Exists(x => (int)x.GetId() == (int)task.GetCategoryId()))
+                if (categories.Exists(x => (int)x.GetId() == (int)task.GetCategoryId()))
                 {
                     categoryLabel[i].Text = categories.Find(x => (int)x.GetId() == (int)task.GetCategoryId()).GetName();
                 }
-                 
+
                 taskPanel[i].Controls.Add(failButton[i]);
                 taskPanel[i].Controls.Add(finishButton[i]);
                 taskPanel[i].Controls.Add(editButton[i]);
@@ -191,27 +200,93 @@ namespace ToDoApp
                 i++;
             }
         }
+
+
+        //Constructor
         public MainForm()
         {
             InitializeComponent();
             CreateMyPanel();
-            
+            leftBorderBtn = new Panel();
+            leftBorderBtn.Size = new Size(7, 60); //60 to rozmiar przycisku
+
+            //Usunięcie góry formularza
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        //podświetlenie przycisku
+        private void ActivateButton(object senderBtn, Color color)
+        {
+            if (senderBtn != null)
+            {
+                DisableButton();
+                //button
+                CurrentBtn = (IconButton)senderBtn;
+                CurrentBtn.BackColor = Color.FromArgb(37, 36, 81);
+                CurrentBtn.ForeColor = color;
+                CurrentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                CurrentBtn.IconColor = color;
+                CurrentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                CurrentBtn.ImageAlign = ContentAlignment.MiddleRight;
+
+                //left border button
+                leftBorderBtn.BackColor = color;
+                leftBorderBtn.Location = new Point(0, CurrentBtn.Location.Y);
+                leftBorderBtn.Visible = true;
+                leftBorderBtn.BringToFront();
+            }
+            iconCurrentChildForm.IconChar = CurrentBtn.IconChar;
+            iconCurrentChildForm.IconColor = color;
+        }
+
+        //wyłączenie podświetlenia
+        private void DisableButton()
+        {
+            if (CurrentBtn != null)
+            {
+                CurrentBtn.BackColor = Color.DarkSlateBlue; //tutaj kolor przycisku
+                CurrentBtn.ForeColor = Color.WhiteSmoke;
+                CurrentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                CurrentBtn.IconColor = Color.WhiteSmoke;
+                CurrentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                CurrentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            }
+        }
+
+         private void OpenChildForm(Form childForm)
+    {
+        //open only form
+        if (currentChildForm != null)
+        {
+            currentChildForm.Close();
+        }
+        currentChildForm = childForm;
+        //End
+        childForm.TopLevel = false;
+        childForm.FormBorderStyle = FormBorderStyle.None;
+        childForm.Dock = DockStyle.Fill;
+        panelDesktop.Controls.Add(childForm);
+        panelDesktop.Tag = childForm;
+        childForm.BringToFront();
+        childForm.Show();
+        
+        lbTitleChildForm.Text = childForm.Text;
+    }
+
+        //Przechowuje kolory RGB
+        private struct RGBColors
         {
 
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+            public static Color color1 = Color.FromArgb(123, 222, 16); //w ten sposób jakie chcesz RGB
 
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-                
-        }
+
+
+
 
         private void addTaskButton_Click(object sender, EventArgs e)
         {
@@ -221,14 +296,105 @@ namespace ToDoApp
             settingsForm.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+           // OpenChildForm(new NAZWAFORMULARZA());
+        }
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            // OpenChildForm(new NAZWAFORMULARZA());
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            // OpenChildForm(new NAZWAFORMULARZA());
+        }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            // OpenChildForm(new NAZWAFORMULARZA());
+        }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            // OpenChildForm(new NAZWAFORMULARZA());
+        }
+
+        private void iconButton6_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            // OpenChildForm(new NAZWAFORMULARZA());
+        }
+
+        //Resetuje status przycisków do nieaktywnych
+        private void Reset()
+        {
+            DisableButton();
+            leftBorderBtn.Visible = false;
+            iconCurrentChildForm.IconChar = IconChar.Home;
+            iconCurrentChildForm.IconColor = Color.MediumPurple;
+            lbTitleChildForm.Text = "Home";
+        }
+        //Events
+        //Reset
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+
+            Reset();
+
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //Przesuwanie formularza za pomocą TitleBar
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+
+        }
+
+
+
+
+
+        //3 przyciski w kącie
+        private void iconButtonMinimize_Click(object sender, EventArgs e)
+        {
+           WindowState = FormWindowState.Minimized;
+        }
+
+        private void iconButtonMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+               WindowState = FormWindowState.Maximized;
+            else
+               WindowState = FormWindowState.Normal;
+        }
+
+        private void iconButtonExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
