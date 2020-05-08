@@ -26,15 +26,15 @@ namespace ToDoApp
                         Task tmpTask = new Task((int)myReader["id"], myReader["name"].ToString(), (int)myReader["category_id"]);
                         if ((string)myReader["description"] != null)
                         {
-                            tmpTask.SetDescription((string)myReader["description"]);
+                            tmpTask.Description = (string)myReader["description"];
                         }
-                        tmpTask.SetIsImportant((bool)myReader["important"]);
-                        tmpTask.SetStatus(Convert.ToChar(myReader["status"]));
+                        tmpTask.IsImportant = (bool)myReader["important"];
+                        tmpTask.Status = Convert.ToChar(myReader["status"]);
                         //Console.WriteLine((char)myReader["status"]);
                         if (myReader["deadline"] != DBNull.Value)
                         {
 
-                            tmpTask.SetDeadline((DateTime?)(myReader["deadline"]));
+                            tmpTask.Deadline = (DateTime?)(myReader["deadline"]);
                         }
                         tasks.Add(tmpTask);
                     }
@@ -83,24 +83,24 @@ namespace ToDoApp
         {
             string partquery = "`tasks` (`id`, `name`, `category_id`, `description`, `deadline`, `status`, `important`, `subtask_of`) " +
                 "VALUES (NULL, '" +
-                task.GetName() + "', '" + task.GetCategoryId() + "', '" + task.GetDescription() + "', "; 
-            if(task.GetDeadline() == null)
+                task.Name + "', '" + task.CategoryId + "', '" + task.Description + "', "; 
+            if(task.Deadline == null)
             {
                 partquery += "NULL";
             }
             else
             { 
-                partquery += "'" + task.GetDeadline().ToString() + "'";
+                partquery += "'" + task.Deadline.ToString() + "'";
             }
 
-            partquery += ", 'u', '" + task.GetIsImportant() + "', ";
-            if (task.GetSubtaskOf() == null)
+            partquery += ", 'u', '" + task.IsImportant + "', ";
+            if (task.SubtaskOf == null)
             {
                 partquery += "NULL);";
             }
             else
             {
-                partquery += "'" + task.GetSubtaskOf() + "');";
+                partquery += "'" + task.SubtaskOf + "');";
             }
 
             Handler.Insert(partquery);

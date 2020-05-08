@@ -49,12 +49,12 @@ namespace ToDoApp.view
         private void addTaskButton_Click(object sender, EventArgs e)
         {
             Task tempTask = new Task(nameTextBox.Text,'u');
-            tempTask.SetDescription(descriptionTextBox.Text);
-            tempTask.SetIsImportant(isImportantCheckBox.Checked);
-            tempTask.SetCategoryId(1);
+            tempTask.Description = descriptionTextBox.Text;
+            tempTask.IsImportant = isImportantCheckBox.Checked;
+            tempTask.CategoryId = 1;
             if (isDeadlineCheckBox.Checked)
             {
-                tempTask.SetDeadline(deadlineDateTimePicker.Value);
+                tempTask.Deadline = deadlineDateTimePicker.Value;
             }
             TaskHandler.AddTask(tempTask);
             Close();

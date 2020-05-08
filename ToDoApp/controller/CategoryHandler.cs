@@ -27,7 +27,7 @@ namespace ToDoApp
                         Category tmpCategory = new Category((int)myReader["id"], myReader["name"].ToString());
                         if (myReader["description"] != null)
                         {
-                            tmpCategory.SetDescription(myReader["description"].ToString());
+                            tmpCategory.Description = myReader["description"].ToString();
                         }
                         categories.Add(tmpCategory);
                     }
@@ -48,20 +48,20 @@ namespace ToDoApp
         static public void AddCategory(Category newCategory)
         {
             string query = "INSERT INTO `categories` (`id`, `name`, `description`) " +
-                "VALUES(NULL, '" + newCategory.GetName() + "', '" + newCategory.GetDescription() + "');";
+                "VALUES(NULL, '" + newCategory.Name + "', '" + newCategory.Description + "');";
             DatabaseConnection.Do(query);
         }
         static public void DeleteCategory(Category categoryToDelete)
         {
-            string query = "DELETE FROM `categories` WHERE `id` = " + categoryToDelete.GetId()+";";
+            string query = "DELETE FROM `categories` WHERE `id` = " + categoryToDelete.Id + ";";
             DatabaseConnection.Do(query);
         }
         static public void UpdateCategory(Category newCategory)
         {
             string query = "UPDATE `categories` SET " +
-                "`name` = '" + newCategory.GetName() + "'," +
-                "`description` = '" + newCategory.GetDescription() + "' " +
-                "WHERE `categories`.`id` = " + newCategory.GetId() + ";";
+                "`name` = '" + newCategory.Name + "'," +
+                "`description` = '" + newCategory.Description + "' " +
+                "WHERE `categories`.`id` = " + newCategory.Id + ";";
             DatabaseConnection.Do(query);
         }
     }

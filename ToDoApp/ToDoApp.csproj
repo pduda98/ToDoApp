@@ -54,6 +54,9 @@
     <Compile Include="controller\Handler.cs" />
     <Compile Include="model\Category.cs" />
     <Compile Include="controller\DatabaseConnection.cs" />
+    <Compile Include="model\DailyTask.cs" />
+    <Compile Include="model\DateTask.cs" />
+    <Compile Include="model\IntervalTask.cs" />
     <Compile Include="view\AddTaskForm.cs">
       <SubType>Form</SubType>
     </Compile>

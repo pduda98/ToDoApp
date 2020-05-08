@@ -35,3 +35,4 @@ C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.csproj.CoreCompil
 C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.csproj.CopyComplete
 C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.exe
 C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.pdb
+C:\Users\ACER\source\repos\ToDoApp\ToDoApp\bin\Debug\FontAwesome.Sharp.dll

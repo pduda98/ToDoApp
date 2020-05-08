@@ -52,9 +52,9 @@ namespace ToDoApp
                 {
                     BackColor = System.Drawing.Color.LightSkyBlue,
                     Location = new Point(13, 13 + 144 * i),
-                    Name = "tasktaskPanel" + (int)task.GetId(),
+                    Name = "tasktaskPanel" + (int)task.Id,
                     Size = new System.Drawing.Size(727, 142),
-                    TabIndex = 9 + (int)task.GetId() * 9 + 5
+                    TabIndex = 9 + (int)task.Id * 9 + 5
 
                 };
                 taskPanel[i].SuspendLayout();
@@ -62,9 +62,9 @@ namespace ToDoApp
                 failButton[i] = new Button
                 {
                     Location = new Point(615, 60),
-                    Name = "failButton" + (int)task.GetId(),
+                    Name = "failButton" + (int)task.Id,
                     Size = new System.Drawing.Size(75, 78),
-                    TabIndex = 8 + (int)task.GetId() * 9 + 5,
+                    TabIndex = 8 + (int)task.Id * 9 + 5,
                     Text = "nie udane",
                     UseVisualStyleBackColor = true,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold),
@@ -73,16 +73,16 @@ namespace ToDoApp
                 };
                 failButton[i].Click += (object sender, EventArgs e) =>
                 {
-                    TaskHandler.SetTaskFailed((int)task.GetId());
+                    TaskHandler.SetTaskFailed((int)task.Id);
                     RefreshPanel();
                 };
 
                 finishButton[i] = new Button
                 {
                     Location = new System.Drawing.Point(534, 60),
-                    Name = "finishButton" + (int)task.GetId(),
+                    Name = "finishButton" + (int)task.Id,
                     Size = new System.Drawing.Size(75, 78),
-                    TabIndex = 7 + (int)task.GetId() * 9 + 5,
+                    TabIndex = 7 + (int)task.Id * 9 + 5,
                     Text = "zrobione",
                     UseVisualStyleBackColor = true,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold),
@@ -90,16 +90,16 @@ namespace ToDoApp
                 };
                 finishButton[i].Click += (object sender, EventArgs e) =>
                 {
-                    TaskHandler.SetTaskFinished((int)task.GetId());
+                    TaskHandler.SetTaskFinished((int)task.Id);
                     RefreshPanel();
                 };
 
                 editButton[i] = new Button
                 {
                     Location = new System.Drawing.Point(615, 3),
-                    Name = "editButton" + (int)task.GetId(),
+                    Name = "editButton" + (int)task.Id,
                     Size = new System.Drawing.Size(79, 23),
-                    TabIndex = 6 + (int)task.GetId() * 9 + 5,
+                    TabIndex = 6 + (int)task.Id * 9 + 5,
                     Text = "edytuj",
                     UseVisualStyleBackColor = true,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold)
@@ -108,17 +108,17 @@ namespace ToDoApp
                 statusLabel[i] = new Label
                 {
                     Location = new System.Drawing.Point(322, 32),
-                    Name = "statusLabel" + (int)task.GetId(),
+                    Name = "statusLabel" + (int)task.Id,
                     Size = new System.Drawing.Size(100, 22),
                     BorderStyle = System.Windows.Forms.BorderStyle.None,
-                    TabIndex = 5 + (int)task.GetId() * 9 + 5,
+                    TabIndex = 5 + (int)task.Id * 9 + 5,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold)
                 };
-                if (task.GetStatus() == 'f')
+                if (task.Status == 'f')
                 {
                     statusLabel[i].Text = "zadanie nieudane";
                 }
-                if (task.GetStatus() == 's')
+                if (task.Status == 's')
                 {
                     statusLabel[i].Text = "ukończone";
                 }
@@ -126,12 +126,12 @@ namespace ToDoApp
                 isImportantLabel[i] = new Label
                 {
                     Location = new System.Drawing.Point(322, 4),
-                    Name = "isImportatnLabel" + (int)task.GetId(),
+                    Name = "isImportatnLabel" + (int)task.Id,
                     Size = new System.Drawing.Size(100, 22),
-                    TabIndex = 4 + (int)task.GetId() * 9 + 5,
+                    TabIndex = 4 + (int)task.Id * 9 + 5,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold)
                 };
-                if (task.GetIsImportant() != null && (bool)task.GetIsImportant())
+                if ((bool)task.IsImportant)
                 {
                     isImportantLabel[i].Text = "ważne";
                 }
@@ -139,23 +139,23 @@ namespace ToDoApp
                 deadlineLabel[i] = new Label
                 {
                     Location = new System.Drawing.Point(428, 3),
-                    Name = "deadlineLabel" + (int)task.GetId(),
+                    Name = "deadlineLabel" + (int)task.Id,
                     Size = new System.Drawing.Size(100, 22),
-                    TabIndex = 3 + (int)task.GetId() * 9 + 5,
+                    TabIndex = 3 + (int)task.Id * 9 + 5,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold)
                 };
-                if (task.GetDeadline() != null)
+                if (task.Deadline != null)
                 {
-                    deadlineLabel[i].Text = task.GetDeadline().ToString();
+                    deadlineLabel[i].Text = task.Deadline.ToString();
                 }
 
                 descriptionLabel[i] = new Label
                 {
                     Location = new System.Drawing.Point(4, 60),
-                    Name = "decsriptionLabel" + (int)task.GetId(),
+                    Name = "decsriptionLabel" + (int)task.Id,
                     Size = new System.Drawing.Size(524, 78),
-                    TabIndex = 1 + (int)task.GetId() * 9 + 5,
-                    Text = task.GetDescription(),
+                    TabIndex = 1 + (int)task.Id * 9 + 5,
+                    Text = task.Description,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F)
                 };
 
@@ -163,24 +163,24 @@ namespace ToDoApp
                 {
                     Location = new System.Drawing.Point(4, 3),
                     //Multiline = true,
-                    Name = "nameLabel" + (int)task.GetId(),
+                    Name = "nameLabel" + (int)task.Id,
                     // ReadOnly = true,
                     Size = new System.Drawing.Size(312, 51),
-                    TabIndex = 0 + (int)task.GetId() * 9 + 5,
-                    Text = task.GetName(),
+                    TabIndex = 0 + (int)task.Id * 9 + 5,
+                    Text = task.Name,
                     Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold)
                 };
 
                 categoryLabel[i] = new Label
                 {
                     Location = new System.Drawing.Point(428, 32),
-                    Name = "categoryLabel" + (int)task.GetId(),
+                    Name = "categoryLabel" + (int)task.Id,
                     Size = new System.Drawing.Size(100, 22),
-                    TabIndex = 2 + (int)task.GetId() * 9 + 5
+                    TabIndex = 2 + (int)task.Id * 9 + 5
                 };
-                if (categories.Exists(x => (int)x.GetId() == (int)task.GetCategoryId()))
+                if (categories.Exists(x => (int)x.Id == (int)task.CategoryId))
                 {
-                    categoryLabel[i].Text = categories.Find(x => (int)x.GetId() == (int)task.GetCategoryId()).GetName();
+                    categoryLabel[i].Text = categories.Find(x => (int)x.Id == (int)task.CategoryId).Name;
                 }
 
                 taskPanel[i].Controls.Add(failButton[i]);

@@ -8,113 +8,51 @@ namespace ToDoApp
 {
     class Task
     {
-        private int? _id;
-        private string _name;
-        private int _categoryId;
-        private string _description = null;
-        private DateTime? _deadline = null;
-        private char _status;       // u - unfinished; s - successfully finished; f - finished;
-        private bool? _isImportant;
-        private int? _subtaskOf;
+        public int? Id { get; set; }
+        public string Name { get; set; }
+        public int CategoryId { get; set; }
+        public string Description { get; set; }
+        public DateTime? Deadline { get; set; }
+        public char Status { get; set; }    // u - unfinished; s - successfully finished; f - finished;
+        public bool? IsImportant { get; set; }
+        public int? SubtaskOf { get; set; }
 
-        public void SetId(int id)
-        {
-            _id = id;
-        }
-        public int? GetId()
-        {
-            return _id;
-        }
-        public void SetName(string name)
-        {
-            _name = name;
-        }
-        public string GetName()
-        {
-            return _name;
-        }
-        public void SetDescription(string description)
-        {
-            _description = description;
-        }
-        public string GetDescription()
-        {
-            return _description;
-        }
-        public void SetCategoryId(int categoryId)
-        {
-            _categoryId = categoryId;
-        }
-        public int GetCategoryId()
-        {
-            return _categoryId;
-        }
-        public void SetDeadline(DateTime? deadline)
-        {
-            _deadline = deadline;
-        }
-        public DateTime? GetDeadline()
-        {
-            return _deadline;
-        }
-        public void SetStatus(char status)
-        {
-            _status = status;
-        }
-        public char GetStatus()
-        {
-            return _status;
-        }
-        public bool? GetIsImportant()
-        {
-            return _isImportant;
-        }
-        public void SetIsImportant(bool isImportant)
-        {
-            _isImportant = isImportant;
-        }
-        public int? GetSubtaskOf()
-        {
-            return _subtaskOf;
-        }
-        public void SetSubtaskOf(int subtaskOf)
-        {
-            _subtaskOf = subtaskOf;
-        }
+
+
         public void FailTask()
         {
-            _status = 'f';
+            Status = 'f';
         }
         public void FinishTask()
         {
-            _status = 's';
+            Status = 's';
         }
         private void SetNecceseryFields(string name, int categoryId, char status)
         {
-            SetName(name);
-            SetStatus(status);
-            SetCategoryId(categoryId);
+            Name = name;
+            Status = status;
+            CategoryId = categoryId;
         }
         public Task(int id, string name, int categoryId, char status)
         {
             SetNecceseryFields(name, categoryId, status);
-            SetId(id);
+            Id = id;
         }
 
         public Task(int id, string name, char status)
         {
             SetNecceseryFields(name, 1, status);
-            SetId(id);
+            Id = id;
         }
         public Task(int id, string name, int categoryId)
         {
             SetNecceseryFields(name, categoryId, 'u');
-            SetId(id);
+            Id = id;
         }
         public Task(int id, string name)
         {
             SetNecceseryFields(name, 1, 'u');
-            SetId(id);
+            Id = id;
         }
         public Task(string name, int categoryId, char status)
         {
