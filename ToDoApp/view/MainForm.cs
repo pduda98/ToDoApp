@@ -20,7 +20,7 @@ namespace ToDoApp
         private Panel leftBorderBtn;
         private Form currentChildForm;
 
-
+        
 
 
         public void RefreshPanel()
@@ -215,6 +215,15 @@ namespace ToDoApp
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+
+            iconButtonExit.BackgroundImage = Image.FromFile(".\\pics\\Exit.png");
+            iconButtonExit.BackgroundImageLayout = ImageLayout.Stretch;
+
+            iconButtonMinimize.BackgroundImage = Image.FromFile(".\\pics\\Minimize.png");
+            iconButtonMinimize.BackgroundImageLayout = ImageLayout.Stretch;
+
+            iconButtonMaximize.BackgroundImage = Image.FromFile(".\\pics\\Maximize.png");
+            iconButtonMaximize.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         //podświetlenie przycisku
@@ -397,7 +406,22 @@ namespace ToDoApp
 
         private void iconButtonExit_Click(object sender, EventArgs e)
         {
+            
             Application.Exit();
+        }
+
+        private void iconCurrentChildForm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OnMouseEntericonButtonExit(object sender, EventArgs e)
+        {
+            iconButtonExit.BackColor = Color.Red;
+        }
+        private void OnMouseLeaveiconButtonExit(object sender, EventArgs e)
+        {
+            iconButtonExit.BackColor = Color.Transparent;
         }
     }
 }
