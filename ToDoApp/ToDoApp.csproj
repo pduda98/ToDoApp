@@ -101,6 +101,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="view\TaskView.resx">
       <DependentUpon>TaskView.cs</DependentUpon>
@@ -121,6 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="buttons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\pics\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\pics\Maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\pics\Minimize.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
