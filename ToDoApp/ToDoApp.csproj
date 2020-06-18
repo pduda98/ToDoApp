@@ -81,11 +81,23 @@
     <Compile Include="view\CategoryForm.Designer.cs">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\TaskItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TaskItemForm.Designer.cs">
+      <DependentUpon>TaskItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TaskView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\TaskView.Designer.cs">
       <DependentUpon>TaskView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\UnfinishedTasksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\UnfinishedTasksForm.Designer.cs">
+      <DependentUpon>UnfinishedTasksForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="view\AddTaskForm.resx">
       <DependentUpon>AddTaskForm.cs</DependentUpon>
@@ -102,8 +114,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\TaskItemForm.resx">
+      <DependentUpon>TaskItemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\TaskView.resx">
       <DependentUpon>TaskView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\UnfinishedTasksForm.resx">
+      <DependentUpon>UnfinishedTasksForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

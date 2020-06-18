@@ -55,7 +55,7 @@ namespace ToDoApp
         }
         static public List<Task> GetUnfinishedTasks()
         {
-            return GetTasks("SELECT * FROM `tasks` WHERE `status` = 'u' ORDER BY -deadline DESC");
+            return GetTasks("SELECT * FROM `tasks` WHERE `status` = 'u' ORDER BY important DESC, deadline DESC");
         }
         static public List<Task> GetFinishedTasks()
         {

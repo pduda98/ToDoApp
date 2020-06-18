@@ -26,13 +26,12 @@ namespace ToDoApp
         public void RefreshPanel()
         {
             mainPanel.Controls.Clear();
-            CreateMyPanel();
         }
 
-        public void CreateMyPanel()
+        public void CreateMyPanel(List<Task> tasks)
         {
             //List<Category> categories
-            List<Task> tasks = TaskHandler.GetUnfinishedTasks();
+            
             List<Category> categories = CategoryHandler.GetCategories();
 
             int i = 0;
@@ -48,7 +47,7 @@ namespace ToDoApp
             Label[] categoryLabel = new System.Windows.Forms.Label[tasks.Count];
             foreach (Task task in tasks)
             {
-                taskPanel[i] = new Panel
+                taskPanel[i] = new Panel    
                 {
                     BackColor = System.Drawing.Color.LightSkyBlue,
                     Location = new Point(13, 13 + 144 * i),
@@ -194,7 +193,7 @@ namespace ToDoApp
                 taskPanel[i].Controls.Add(categoryLabel[i]);
 
 
-                mainPanel.Controls.Add(taskPanel[i]);
+                panelmain.Controls.Add(taskPanel[i]);
                 taskPanel[i].ResumeLayout(false);
                 //taskPanel[i].PerformLayout();
                 i++;
@@ -206,7 +205,8 @@ namespace ToDoApp
         public MainForm()
         {
             InitializeComponent();
-            CreateMyPanel();
+            List<Task> tasks = TaskHandler.GetUnfinishedTasks();
+            //CreateMyPanel(tasks);
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60); //60 to rozmiar przycisku
 
@@ -295,12 +295,15 @@ namespace ToDoApp
             // Show the settings form
             settingsForm.Show();
         }
-
+        public void OpenUnfinishedTasks()
+        {
+            OpenChildForm(new UnfinishedTasksForm(this));
+        }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-           // OpenChildForm(new NAZWAFORMULARZA());
+            OpenChildForm(new UnfinishedTasksForm(this));
         }
         private void iconButton2_Click(object sender, EventArgs e)
         {
