@@ -24,12 +24,11 @@ namespace ToDoApp.view
         private void dropShadow(object sender, PaintEventArgs e)
         {
             Panel panel = (Panel)sender;
-            Color[] shadow = new Color[6];
-            shadow[0] = Color.FromArgb(0, 0, 0);
-            shadow[1] = Color.FromArgb(10, 10, 10);
-            shadow[2] = Color.FromArgb(20, 20, 20);
-            shadow[4] = Color.FromArgb(30, 30, 30);
-            shadow[5] = Color.FromArgb(40, 40, 40);
+            Color[] shadow = new Color[3];
+            shadow[0] = Color.FromArgb(100, 100, 100);
+            shadow[1] = Color.FromArgb(150, 150, 150);
+            shadow[2] = Color.FromArgb(200, 200, 200);
+
             Pen pen = new Pen(shadow[0]);
             using (pen)
             {
@@ -37,7 +36,7 @@ namespace ToDoApp.view
                 {
                     Point pt = p.Location;
                     pt.Y += p.Height;
-                    for (var sp = 0; sp < 4; sp++)
+                    for (var sp = 0; sp < 3; sp++)
                     {
                         pen.Color = shadow[sp];
                         e.Graphics.DrawLine(pen, pt.X + sp, pt.Y, pt.X + p.Width - 1 + sp, pt.Y);
