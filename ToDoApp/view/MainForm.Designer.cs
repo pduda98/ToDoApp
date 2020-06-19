@@ -90,6 +90,8 @@
             this.iconButton6.FlatAppearance.BorderSize = 0;
             this.iconButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton6.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.iconButton6.Font = new System.Drawing.Font("Kristen ITC", 12F);
+            this.iconButton6.ForeColor = System.Drawing.Color.Black;
             this.iconButton6.IconChar = FontAwesome.Sharp.IconChar.Heart;
             this.iconButton6.IconColor = System.Drawing.Color.Black;
             this.iconButton6.IconSize = 16;
@@ -113,6 +115,8 @@
             this.iconButton5.FlatAppearance.BorderSize = 0;
             this.iconButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton5.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.iconButton5.Font = new System.Drawing.Font("Kristen ITC", 12F);
+            this.iconButton5.ForeColor = System.Drawing.Color.Black;
             this.iconButton5.IconChar = FontAwesome.Sharp.IconChar.Heart;
             this.iconButton5.IconColor = System.Drawing.Color.Black;
             this.iconButton5.IconSize = 16;
@@ -136,6 +140,8 @@
             this.iconButton4.FlatAppearance.BorderSize = 0;
             this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton4.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.iconButton4.Font = new System.Drawing.Font("Kristen ITC", 12F);
+            this.iconButton4.ForeColor = System.Drawing.Color.Black;
             this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.Heart;
             this.iconButton4.IconColor = System.Drawing.Color.Black;
             this.iconButton4.IconSize = 16;
@@ -159,6 +165,8 @@
             this.iconButton3.FlatAppearance.BorderSize = 0;
             this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton3.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.iconButton3.Font = new System.Drawing.Font("Kristen ITC", 12F);
+            this.iconButton3.ForeColor = System.Drawing.Color.Black;
             this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.Heart;
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconSize = 16;
@@ -182,6 +190,8 @@
             this.iconButton2.FlatAppearance.BorderSize = 0;
             this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton2.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.iconButton2.Font = new System.Drawing.Font("Kristen ITC", 12F);
+            this.iconButton2.ForeColor = System.Drawing.Color.Black;
             this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Heart;
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconSize = 16;
@@ -205,7 +215,8 @@
             this.iconButton1.FlatAppearance.BorderSize = 0;
             this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconButton1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.iconButton1.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.Color.Black;
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Heart;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconSize = 16;
@@ -315,9 +326,10 @@
             // lbTitleChildForm
             // 
             this.lbTitleChildForm.AutoSize = true;
-            this.lbTitleChildForm.Location = new System.Drawing.Point(103, 37);
+            this.lbTitleChildForm.Font = new System.Drawing.Font("Kristen ITC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitleChildForm.Location = new System.Drawing.Point(86, 16);
             this.lbTitleChildForm.Name = "lbTitleChildForm";
-            this.lbTitleChildForm.Size = new System.Drawing.Size(35, 13);
+            this.lbTitleChildForm.Size = new System.Drawing.Size(112, 44);
             this.lbTitleChildForm.TabIndex = 1;
             this.lbTitleChildForm.Text = "Home";
             this.lbTitleChildForm.Click += new System.EventHandler(this.label1_Click);
@@ -328,9 +340,10 @@
             this.iconCurrentChildForm.ForeColor = System.Drawing.SystemColors.ControlText;
             this.iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.Home;
             this.iconCurrentChildForm.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconCurrentChildForm.Location = new System.Drawing.Point(37, 28);
+            this.iconCurrentChildForm.IconSize = 44;
+            this.iconCurrentChildForm.Location = new System.Drawing.Point(29, 16);
             this.iconCurrentChildForm.Name = "iconCurrentChildForm";
-            this.iconCurrentChildForm.Size = new System.Drawing.Size(32, 32);
+            this.iconCurrentChildForm.Size = new System.Drawing.Size(51, 44);
             this.iconCurrentChildForm.TabIndex = 0;
             this.iconCurrentChildForm.TabStop = false;
             this.iconCurrentChildForm.Click += new System.EventHandler(this.iconCurrentChildForm_Click);
@@ -350,10 +363,11 @@
             // 
             this.panelmain.BackColor = System.Drawing.Color.White;
             this.panelmain.Location = new System.Drawing.Point(-1, -1);
-            this.panelmain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelmain.Margin = new System.Windows.Forms.Padding(2);
             this.panelmain.Name = "panelmain";
             this.panelmain.Size = new System.Drawing.Size(750, 812);
             this.panelmain.TabIndex = 0;
+            this.panelmain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelmain_Paint);
             // 
             // MainForm
             // 
@@ -368,7 +382,7 @@
             this.Controls.Add(this.mainPanel);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "ToDo";
             this.panelLeftMenu.ResumeLayout(false);

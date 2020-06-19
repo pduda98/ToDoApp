@@ -289,7 +289,7 @@ namespace ToDoApp
         private struct RGBColors
         {
 
-            public static Color color1 = Color.FromArgb(123, 222, 16); //w ten sposób jakie chcesz RGB
+            public static Color color1 = Color.FromArgb(153, 50, 204); //w ten sposób jakie chcesz RGB
 
         }
 
@@ -422,6 +422,11 @@ namespace ToDoApp
         private void OnMouseLeaveiconButtonExit(object sender, EventArgs e)
         {
             iconButtonExit.BackColor = Color.Transparent;
+        }
+
+        private void panelmain_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
