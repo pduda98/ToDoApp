@@ -40,3 +40,5 @@ C:\Users\ACER\source\repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.view.TaskItemForm.r
 C:\Users\ACER\source\repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.view.UnfinishedTasksForm.resources
 C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.view.TaskItemForm.resources
 C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\obj\Debug\ToDoApp.view.UnfinishedTasksForm.resources
+C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Szymon\Source\Repos\ToDoApp\ToDoApp\bin\Debug\Newtonsoft.Json.xml
